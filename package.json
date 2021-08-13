@@ -7,5 +7,5 @@
     "build": "tsc"
   },
   "author": "kyoukaya",
-  "license": "ISC"
+  "license": "MIT"
 }
