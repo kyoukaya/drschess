@@ -1,0 +1,11 @@
+{
+  "name": "drschess",
+  "version": "1.0.0",
+  "description": "drs chess solver",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "kyoukaya",
+  "license": "ISC"
+}

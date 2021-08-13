@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <title>chess hard</title>
+  </head>
+  <body onload="drawChessboard()">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">chess</span>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row gy-5">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary btn-lg">Wall</button>
+          <button type="button" class="btn btn-primary btn-lg">Away</button>
+        </div>
+      </div>
+      <br />
+      <div class="row gy-5">
+        <div class="col d-grid">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-lg">3</button>
+            <button type="button" class="btn btn-primary btn-lg">4</button>
+            <button type="button" class="btn btn-primary btn-lg">5</button>
+          </div>
+        </div>
+        <div class="col d-grid">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-lg">3</button>
+            <button type="button" class="btn btn-primary btn-lg">4</button>
+            <button type="button" class="btn btn-primary btn-lg">5</button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row gy-5">
+        <div class="col d-grid">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-lg">1</button>
+            <button type="button" class="btn btn-primary btn-lg">2</button>
+            <button type="button" class="btn btn-primary btn-lg">3</button>
+          </div>
+        </div>
+        <div class="col d-grid">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary btn-lg">1</button>
+            <button type="button" class="btn btn-primary btn-lg">2</button>
+            <button type="button" class="btn btn-primary btn-lg">3</button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="card">
+        <canvas id="canvasChessboard"></canvas>
+      </div>
+      <div style="display: none">
+        <img
+          id="imagesource"
+          src="https://cdn.discordapp.com/emojis/363369094197805058.png?v=1"
+        />
+      </div>
+    </div>
+    <script src="chess.js"></script>
+    <script src="index.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://frogcat.github.io/canvas-arrow/canvas-arrow.js"></script>
+    `
+  </body>
+</html>
