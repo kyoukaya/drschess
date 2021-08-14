@@ -1,4 +1,4 @@
-import * as chess from "./chess"
+import * as chess from "./chess";
 
 const minXY = 0;
 const maxXY = 4;
@@ -99,6 +99,19 @@ function Solve(
   debuff: [number, number],
   unsafe: [number, number]
 ): [Point, Point[]] {
+  if (
+    row < 0 ||
+    debuff.length < 2 ||
+    debuff[0] < 0 ||
+    debuff[1] < 0 ||
+    unsafe.length < 2 ||
+    unsafe[0] < 0 ||
+    unsafe[0] > 4 ||
+    unsafe[1] < 0 ||
+    unsafe[1] > 4
+  ) {
+    throw "not ready";
+  }
   const tdebuff = debuff[0] + debuff[1];
   const endgame = endPoints.get(debuff[1]);
   if (endgame === undefined) {
@@ -133,15 +146,101 @@ function Solve(
 }
 
 initEndPoints();
-chess.drawChessboard();
-const t0 = Date.now();
+chess.drawEmptyChessboard();
 
-const back = 1;
-const debuff: [number, number] = [3, 2];
-const r = 1;
-const l = 3;
+const okEle = document.getElementById("ok");
+const ngEle = document.getElementById("ng");
+const wallBtn = document.getElementById("wall-btn");
+const wallAwayBtn = document.getElementById("away-wall-btn");
+const debuffA3Btn = document.getElementById("debuff1-2");
+const debuffA4Btn = document.getElementById("debuff1-3");
+const debuffA5Btn = document.getElementById("debuff1-4");
+const debuffB3Btn = document.getElementById("debuff2-2");
+const debuffB4Btn = document.getElementById("debuff2-3");
+const debuffB5Btn = document.getElementById("debuff2-4");
+const left1Btn = document.getElementById("left-1");
+const left2Btn = document.getElementById("left-2");
+const left3Btn = document.getElementById("left-3");
+const right1Btn = document.getElementById("right-1");
+const right2Btn = document.getElementById("right-2");
+const right3Btn = document.getElementById("right-3");
 
-const [start, secondMoves] = Solve(back, debuff, [1 + r, 3 - l]);
-const t1 = Date.now() - t0;
-console.log(start, secondMoves);
-console.log(t1);
+okEle.hidden = true;
+ngEle.hidden = false;
+
+function solve(back: number, debuff: [number, number], r: number, l: number) {
+  try {
+    const [start, secondMoves] = Solve(back, debuff, [1 + r, 3 - l]);
+    const second = secondMoves[0];
+    chess.drawChessboard(start.x, start.y, second.x, second.y);
+    console.log(
+      "start: (%d,%d), second: (%d,%d)",
+      start.x,
+      start.y,
+      second.x,
+      second.y
+    );
+    okEle.hidden = false;
+    ngEle.hidden = true;
+  } catch (error) {
+    console.log("path not generated:", error);
+    okEle.hidden = true;
+    ngEle.hidden = false;
+  }
+}
+
+let back = -1;
+let debuff: [number, number] = [-1, -1];
+let r = -99;
+let l = -99;
+
+function btnListner(e: HTMLElement, f: Function) {
+  e.addEventListener("click", function (this: HTMLElement, ev: MouseEvent) {
+    f();
+    solve(back, debuff, r, l);
+  });
+}
+
+// how do i into javascript
+btnListner(wallBtn, () => {
+  back = 0;
+});
+btnListner(wallAwayBtn, () => {
+  back = 1;
+});
+btnListner(debuffA3Btn, () => {
+  debuff[0] = 2;
+});
+btnListner(debuffA4Btn, () => {
+  debuff[0] = 3;
+});
+btnListner(debuffA5Btn, () => {
+  debuff[0] = 4;
+});
+btnListner(debuffB3Btn, () => {
+  debuff[1] = 2;
+});
+btnListner(debuffB4Btn, () => {
+  debuff[1] = 3;
+});
+btnListner(debuffB5Btn, () => {
+  debuff[1] = 4;
+});
+btnListner(left1Btn, () => {
+  l = 1;
+});
+btnListner(left2Btn, () => {
+  l = 2;
+});
+btnListner(left3Btn, () => {
+  l = 3;
+});
+btnListner(right1Btn, () => {
+  r = 1;
+});
+btnListner(right2Btn, () => {
+  r = 2;
+});
+btnListner(right3Btn, () => {
+  r = 3;
+});

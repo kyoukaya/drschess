@@ -1,84 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <title>chess hard</title>
-  </head>
-  <body onload="drawChessboard()">
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">chess</span>
-      </div>
-    </nav>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+  <title>chess hard</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-      <div class="row gy-5">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary btn-lg">Wall</button>
-          <button type="button" class="btn btn-primary btn-lg">Away</button>
-        </div>
-      </div>
-      <br />
-      <div class="row gy-5">
-        <div class="col d-grid">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-lg">3</button>
-            <button type="button" class="btn btn-primary btn-lg">4</button>
-            <button type="button" class="btn btn-primary btn-lg">5</button>
-          </div>
-        </div>
-        <div class="col d-grid">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-lg">3</button>
-            <button type="button" class="btn btn-primary btn-lg">4</button>
-            <button type="button" class="btn btn-primary btn-lg">5</button>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row gy-5">
-        <div class="col d-grid">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-lg">1</button>
-            <button type="button" class="btn btn-primary btn-lg">2</button>
-            <button type="button" class="btn btn-primary btn-lg">3</button>
-          </div>
-        </div>
-        <div class="col d-grid">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary btn-lg">1</button>
-            <button type="button" class="btn btn-primary btn-lg">2</button>
-            <button type="button" class="btn btn-primary btn-lg">3</button>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="card">
-        <canvas id="canvasChessboard"></canvas>
-      </div>
-      <div style="display: none">
-        <img
-          id="imagesource"
-          src="https://cdn.discordapp.com/emojis/363369094197805058.png?v=1"
-        />
+      <span class="navbar-brand mb-0 h1">drschess solver</span>
+      <div id="ok">✔️</div>
+      <div id="ng">❌</div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row gy-5">
+      <div class="btn-group btn-group-toggle input-group">
+        <input type="radio" class="btn-check" name="backs" id="wall-btn" autocomplete="off">
+        <label class="btn btn-primary btn-lg" for="wall-btn">Wall <span class="fs-6 text-decoration-underline"
+            data-bs-toggle="tooltip"
+            title="Is the wall furthest away from the safe square safe? Or do we need to move 1 away from the furthest wall.">(?)</span></label>
+        <input type="radio" class="btn-check" name="backs" id="away-wall-btn" autocomplete="off">
+        <label class="btn btn-primary btn-lg" for="away-wall-btn">Away</label>
       </div>
     </div>
-    <script src="bundle.js"></script>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://frogcat.github.io/canvas-arrow/canvas-arrow.js"></script>
-    `
-  </body>
+    <br />
+    <div class="row gy-5">
+      <div class="col d-grid">
+        <div class="btn-group btn-group-toggle input-group">
+          <input type="radio" class="btn-check" name="debuff1" id="debuff1-2" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff1-2">2 <span class="fs-6 text-decoration-underline"
+              data-bs-toggle="tooltip"
+              title="The amount of spaces you'd need to move for the first debuff.">(?)</span></label>
+          <input type="radio" class="btn-check" name="debuff1" id="debuff1-3" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff1-3">3</label>
+          <input type="radio" class="btn-check" name="debuff1" id="debuff1-4" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff1-4">4</label>
+        </div>
+      </div>
+      <div class="col d-grid">
+        <div class="btn-group btn-group-toggle input-group">
+          <input type="radio" class="btn-check" name="debuff2" id="debuff2-2" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff2-2">2 <span class="fs-6 text-decoration-underline"
+              data-bs-toggle="tooltip"
+              title="The amount of spaces you'd need to move for the second debuff.">(?)</span></label>
+          <input type="radio" class="btn-check" name="debuff2" id="debuff2-3" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff2-3">3</label>
+          <input type="radio" class="btn-check" name="debuff2" id="debuff2-4" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="debuff2-4">4</label>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row gy-5">
+      <div class="col d-grid">
+        <div class="btn-group btn-group-toggle input-group">
+          <input type="radio" class="btn-check" name="left" id="left-1" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="left-1">1 <span class="fs-6 text-decoration-underline"
+              data-bs-toggle="tooltip" title="The amount of spaces the chess piece moving right (when looking at the safe zone) is going.
+               I.e., they're moving left on this board.">(?)</span></label>
+          <input type="radio" class="btn-check" name="left" id="left-2" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="left-2">2</label>
+          <input type="radio" class="btn-check" name="left" id="left-3" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="left-3">3</label>
+        </div>
+      </div>
+      <div class="col d-grid">
+        <div class="btn-group btn-group-toggle input-group">
+          <input type="radio" class="btn-check" name="right" id="right-1" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="right-1">1 <span class="fs-6 text-decoration-underline"
+              data-bs-toggle="tooltip" title="The amount of spaces the chess piece moving left (when looking at the safe zone) is going.
+                         I.e., they're moving right on this board.">(?)</span></label>
+          <input type="radio" class="btn-check" name="right" id="left-2" autocompl <input type="radio" class="btn-check"
+            name="right" id="right-2" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="right-2">2</label>
+          <input type="radio" class="btn-check" name="right" id="right-3" autocomplete="off">
+          <label class="btn btn-primary btn-lg" for="right-3">3</label>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="card">
+      <canvas id="canvasChessboard"></canvas>
+    </div>
+    <div style="display: none">
+      <img id="imagesource" src="https://cdn.discordapp.com/emojis/363369094197805058.png?v=1" />
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+  <script src="bundle.js"></script>
+  <p class="m-2 text-end">by kaya molkot @ tonberry</p>
+  <script>
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
+</body>
+
 </html>
