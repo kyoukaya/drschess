@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
-        "outDir": "public",
+        "outDir": "./public",
         "module": "commonjs",
         "target": "es2020",
         "jsx": "preserve",
+        "allowJs": true,
         "strictFunctionTypes": true,
         "sourceMap": true
     },

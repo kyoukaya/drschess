@@ -1,4 +1,4 @@
-import "./chess.js"
+import * as chess from "./chess"
 
 const minXY = 0;
 const maxXY = 4;
@@ -133,6 +133,7 @@ function Solve(
 }
 
 initEndPoints();
+chess.drawChessboard();
 const t0 = Date.now();
 
 const back = 1;
