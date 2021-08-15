@@ -1,4 +1,5 @@
 import * as chess from "./chess";
+import { debounce } from "debounce";
 
 const minXY = 0;
 const maxXY = 4;
@@ -244,3 +245,10 @@ btnListner(right2Btn, () => {
 btnListner(right3Btn, () => {
   r = 3;
 });
+window.onresize = debounce(
+  () => {
+    solve(back, debuff, r, l);
+  },
+  300,
+  false
+);

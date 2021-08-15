@@ -15,7 +15,7 @@ function drawEmptyChessboard(): CanvasRenderingContext2D {
   }
   // draw goal
   ctx.fillStyle = "cyan";
-  ctx.fillRect(2 * squareSize, 4 * squareSize, squareSize, squareSize);
+  ctx.fillRect(2 * squareSize, 0 * squareSize, squareSize, squareSize);
   return ctx;
 }
 
@@ -25,11 +25,14 @@ function drawChessboard(
   moveX: number,
   moveY: number
 ) {
+  startX = 4 - startX;
+  startY = 4 - startY;
+  moveX = 4 - moveX;
+  moveY = 4 - moveY;
   const ctx = drawEmptyChessboard();
   // size of each chess square
   const squareSize = canvas.clientWidth / 5;
   // position of board's top left
-  // draw start point
   let img = <CanvasImageSource>document.getElementById("imagesource");
   const blobX = startX * squareSize + 5;
   const blobY = startY * squareSize + 5;
@@ -39,8 +42,7 @@ function drawChessboard(
   ctx.strokeStyle = "white";
   ctx.lineWidth = 3;
   drawArrow(ctx, squareSize, startX, startY, moveX, moveY);
-  drawArrow(ctx, squareSize, moveX, moveY, 2, 4);
-  ctx.stroke();
+  drawArrow(ctx, squareSize, moveX, moveY, 2, 0);
 }
 
 function drawArrow(
